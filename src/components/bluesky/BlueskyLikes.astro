@@ -1,0 +1,32 @@
+---
+import { BLUESKY_IDENTIFIER } from "../../config.json";
+import { getCollection } from "astro:content";
+import { getLikes } from "./utils";
+import Likes from "./Likes.svelte";
+
+let posts = await getCollection("posts");
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const url = canonicalURL.toString();
+
+// get first post (sorted by indexedAt) with url in embed.external.uri
+const post = posts
+  .sort(
+    (a, b) =>
+      new Date(b.data.indexedAt).getTime() -
+      new Date(a.data.indexedAt).getTime()
+  )
+  // @ts-expect-error: weird type fuckery
+  .find((post) => post.data.embed?.external?.uri === url);
+
+let likesData = post ? await getLikes(post.data.uri) : [];
+---
+
+<Likes
+  uri={post?.data.uri}
+  likesData={likesData}
+  likesCount={Math.max(post?.data.likeCount ?? 0, likesData.length)}
+  user={BLUESKY_IDENTIFIER}
+  client:idle
+/>
