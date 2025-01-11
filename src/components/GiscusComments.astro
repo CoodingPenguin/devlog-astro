@@ -1,0 +1,42 @@
+<section class="mx-auto mt-12">
+  <script src="https://giscus.app/client.js"
+      data-repo="coodingpenguin/devlog-astro"
+      data-repo-id="R_kgDONo23tQ"
+      data-category="comments"
+      data-category-id="DIC_kwDONo23tc4Cl7g8"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="0"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="en"
+      crossorigin="anonymous"
+      async>
+  </script>
+</section>
+
+<script is:inline>
+  function updateGiscusTheme() {
+    const theme = document.documentElement.classList.contains('dark') 
+      ? `${new URL(document.URL).origin}/giscus/dark.css` 
+      : `${new URL(document.URL).origin}/giscus/light.css`
+    const iframe = document.querySelector('iframe.giscus-frame')
+    if (!iframe) return
+    iframe.contentWindow.postMessage(
+      {
+        giscus: {
+          setConfig: { theme },
+        },
+      },
+    'https://giscus.app',
+    )  
+  }
+
+  const observer = new MutationObserver(updateGiscusTheme)
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
+
+  window.onload = () => {
+    updateGiscusTheme()
+  }
+</script>

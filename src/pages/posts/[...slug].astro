@@ -9,6 +9,7 @@ import FormattedDate from "$components/FormattedDate.astro";
 import { getBlogPosts } from "src/utils";
 import BlueskyLikes from "$components/bluesky/BlueskyLikes.astro";
 import Tag from "$components/Tag.astro";
+import GiscusComments from "$components/GiscusComments.astro";
 
 export async function getStaticPaths() {
   const posts = await getBlogPosts();
@@ -56,10 +57,11 @@ if (replacedHero && !images[replacedHero])
       <h1 class="mt-4">{post.data.title}</h1>
       <Content />
 
-      <BlueskyLikes
+      <!-- <BlueskyLikes
         disableLikes={post.data.disableLikes}
         disableComments={post.data.disableComments}
-      />
+      /> -->
+      <GiscusComments/>
     </BlogPost>
   </main>
   <Footer />
