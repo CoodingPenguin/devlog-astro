@@ -13,7 +13,7 @@ const blog = defineCollection({
     disableComments: z.boolean().optional(),
 
     disableLikes: z.boolean().optional(),
-    
+
     // date published
     pubDate: z.coerce.date(),
 
@@ -44,7 +44,6 @@ const blog = defineCollection({
 
 import { authorFeedLoader } from "@ascorbic/bluesky-loader";
 import { BLUESKY_IDENTIFIER } from "../config.json";
-
 
 const posts = defineCollection({
   loader: authorFeedLoader({

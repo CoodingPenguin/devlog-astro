@@ -34,6 +34,8 @@
     "@sveltejs/vite-plugin-svelte": "^4.0.0-next.6",
     "@tailwindcss/typography": "^0.5.15",
     "pagefind": "^1.1.1",
+    "prettier": "^3.4.2",
+    "prettier-plugin-astro": "^0.14.1",
     "vite-plugin-pagefind": "^0.2.10"
   },
   "overrides": {
