@@ -22,7 +22,7 @@ const pages = posts.reduce(
   {} as Record<
     string,
     { title: string; description: string; useHero: boolean; heroImage?: string }
-  >,
+  >
 );
 
 export const { getStaticPaths, GET } = OGImageRoute({
@@ -64,6 +64,6 @@ export const { getStaticPaths, GET } = OGImageRoute({
       },
     },
     padding: 80,
-    fonts: ["./src/assets/InterVariable.ttf"],
+    fonts: ["./src/assets/font/PretandardVariable.ttf"],
   }),
 });
