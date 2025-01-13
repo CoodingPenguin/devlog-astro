@@ -1,8 +1,8 @@
 {
-  "SITE": "https://coodingpenguin.xyz",
-  "BASE": "",
+  "SITE": "https://coodingpenguin.github.io",
+  "BASE": "devlog-astro",
   "SITE_TITLE": "coodingpenguin",
-  "SITE_NAME": "coodingpenguin",
+  "SITE_NAME": "",
   "SITE_DESCRIPTION": "Welcome to my website!",
   "SITE_FAVICON": "🐧",
   "NAME": "coodingpenguin",
