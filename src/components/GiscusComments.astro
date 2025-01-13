@@ -18,9 +18,10 @@
 
 <script is:inline>
   function updateGiscusTheme() {
+    const root = new URL("../../", document.URL).href;
     const theme = document.documentElement.classList.contains('dark') 
-      ? `${new URL(document.URL).origin}/giscus/dark.css` 
-      : `${new URL(document.URL).origin}/giscus/light.css`
+      ? `${root}/giscus/dark.css` 
+      : `${root}/giscus/light.css`
     const iframe = document.querySelector('iframe.giscus-frame')
     if (!iframe) return
     iframe.contentWindow.postMessage(
