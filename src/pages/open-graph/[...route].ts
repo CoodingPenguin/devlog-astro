@@ -53,17 +53,20 @@ export const { getStaticPaths, GET } = OGImageRoute({
     font: {
       /** Font style for the page title. */
       title: {
-        families: ["Pretendard Variable", "Segoe UI Emoji", "Segoe UI Symbol"],
+        families: ["Pretendard Variable", "Noto Color Emoji"],
         color: [255, 255, 255],
-        size: 80,
+        size: 60,
         weight: "SemiBold",
       },
       description: {
-        families: ["Pretendard Variable", "Segoe UI Emoji", "Segoe UI Symbol"],
+        families: ["Pretendard Variable", "Noto Color Emoji"],
         color: [255, 255, 255],
       },
     },
     padding: 80,
-    fonts: ["./src/assets/font/PretendardVariable.ttf"],
+    fonts: [
+      "./src/assets/font/PretendardVariable.ttf",
+      "./src/assets/font/NotoColorEmoji.ttf",
+    ],
   }),
 });
