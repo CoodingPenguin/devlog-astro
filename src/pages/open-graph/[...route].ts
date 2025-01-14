@@ -53,13 +53,13 @@ export const { getStaticPaths, GET } = OGImageRoute({
     font: {
       /** Font style for the page title. */
       title: {
-        families: ["Inter"],
+        families: ["Pretendard Variable"],
         color: [255, 255, 255],
         size: 80,
         weight: "SemiBold",
       },
       description: {
-        families: ["Inter"],
+        families: ["Pretendard Variable"],
         color: [255, 255, 255],
       },
     },
