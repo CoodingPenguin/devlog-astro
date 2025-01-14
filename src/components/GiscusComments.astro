@@ -9,7 +9,7 @@
       data-reactions-enabled="0"
       data-emit-metadata="0"
       data-input-position="top"
-      data-theme="preferred_color_scheme"
+      data-theme="noborder_gray"
       data-lang="en"
       crossorigin="anonymous"
       async>
@@ -18,20 +18,10 @@
 
 <script is:inline>
   function updateGiscusTheme() {
-    const root = new URL("../../", document.URL).href;
-    const theme = document.documentElement.classList.contains('dark') 
-      ? `${root}/giscus/dark.css` 
-      : `${root}/giscus/light.css`
+    const theme = document.documentElement.classList.contains('dark') ? 'noborder_gray' : 'noborder_light'
     const iframe = document.querySelector('iframe.giscus-frame')
     if (!iframe) return
-    iframe.contentWindow.postMessage(
-      {
-        giscus: {
-          setConfig: { theme },
-        },
-      },
-    'https://giscus.app',
-    )  
+    iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, 'https://giscus.app')
   }
 
   const observer = new MutationObserver(updateGiscusTheme)
