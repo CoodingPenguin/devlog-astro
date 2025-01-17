@@ -2,6 +2,7 @@ import prose from "@tailwindcss/typography";
 import forms from "@tailwindcss/forms";
 import plugin from "tailwindcss/plugin";
 import colors from "tailwindcss/colors";
+import scrollbarHide from "tailwind-scrollbar-hide";
 import { ACCENT_COLOR, BASE_COLOR, MANUAL_DARK_MODE } from "./src/config.json";
 
 /** @type {import('tailwindcss').Config} */
@@ -43,6 +44,6 @@ export default {
         '&.prose :where(:not(pre)>code):not(:where([class~="not-prose"] *))'
       );
     }),
-    require("tailwind-scrollbar-hide"),
+    scrollbarHide,
   ],
 };
