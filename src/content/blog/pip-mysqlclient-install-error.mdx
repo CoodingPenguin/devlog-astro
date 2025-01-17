@@ -27,7 +27,7 @@ arch -x86_64 /usr/local/bin/brew install mysql
 
 > **💡 arch -x86-64는 무엇인가요?**
 >
-> `arch` 명령어는 특정 아키텍처로 앱을 실행할 수 있게 해주는데, `arch -x86-64`로 해주어야 Intel 기반 앱을 설치할 수 있다. 2022년 당시 mysqlclient는 Apple Silicon 칩에 대한 지원이 없었어서 위와 같이 깔아주어야 이슈 없이 설치된다. 자세한 내용은 [여기](https://subicura.com/mac/dev/apple-silicon.html#apple-silicon-m1)를 참고할 것.
+> `arch` 명령어는 특정 아키텍처로 앱을 실행할 수 있게 해주는데, `arch -x86-64`로 해주어야 Intel 기반 앱을 설치할 수 있다. 2022년 당시 mysqlclient는 Apple Silicon 칩에 대한 지원이 없었어서 위와 같이 해주어야 이슈 없이 설치된다. 자세한 내용은 [여기](https://subicura.com/mac/dev/apple-silicon.html#apple-silicon-m1)를 참고할 것.
 
 ## wheel 빌드 에러가 발생한 경우
 
@@ -41,11 +41,11 @@ error: command 'clang' failed with exit status 1
 
 ```bash
 # brew가 설치된 경로 확인
-brew --prefix   # output: Users/helloWorld/homebrew
+brew --prefix   # output: Users/coodingpenguin/homebrew
 
 # ssl과 zstd 라이브러리를 찾도록 플래그 설정
-export LDFLAGS="-L/Users/helloWorld/homebrew/lib -L/Users/helloWorld/homebrew/opt/openssl/lib"
-export CPPFLAGS="-I/Users/helloWorld/homebrew/include -I/Users/helloWorld/homebrew/opt/openssl/include"
+export LDFLAGS="-L/Users/coodingpenguin/homebrew/lib -L/Users/coodingpenguin/homebrew/opt/openssl/lib"
+export CPPFLAGS="-I/Users/coodingpenguin/homebrew/include -I/Users/coodingpenguin/homebrew/opt/openssl/include"
 ```
 
 ## 참고 자료
