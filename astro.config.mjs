@@ -19,6 +19,8 @@ import {
 
 import LinkCardEmbed from "./src/embeds/link-card/embed";
 import YoutubeEmbed from "./src/embeds/youtube/embed";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 
 // https://astro.build/config
 export default defineConfig({
@@ -70,6 +72,8 @@ export default defineConfig({
       ],
       wrap: true,
     },
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [rehypeKatex],
   },
 
   prefetch: {
