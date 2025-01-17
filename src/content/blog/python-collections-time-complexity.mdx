@@ -1,0 +1,84 @@
+---
+title: "파이썬 대표 컬렉션 연산의 시간복잡도"
+description: "대표 컬렉션인 list, set, dict 메서드의 시간복잡도"
+pubDate: "2022-09-12"
+published: true
+updatedDate: "2022-09-12"
+heroImage: "/src/assets/img/python-collections-time-complexity/thumbnail.png"
+tags: ["python"]
+hideHero: false
+useHeroAsOGImage: true
+noTextInOGImage: true
+---
+
+파이썬의 대표적인 자료구조 **list, dict, set의 연산별 시간복잡도**이다. 최악의 경우를 나타내는 **빅오(Big-O) 표기법**을 사용했으며, tuple의 경우 immutable하다는 것을 제외하고 list의 연산과 동일하다.
+
+## list
+
+| **연산**      | **예시**          | **복잡도**     | **비고**                                        |
+| ------------- | ----------------- | -------------- | ----------------------------------------------- |
+| index         | `l[i]`            | $O(1)$         |                                                 |
+| store         | `l[i] = 0`        | $O(1)$         |                                                 |
+| store         | `l[i] = 0`        | $O(1)$         |                                                 |
+| length        | `len(l)`          | $O(1)$         |                                                 |
+| append        | `l.append(5)`     | $O(1)$         |                                                 |
+| pop           | `l.pop()`         | $O(1)$         | `l.pop(-1)`과 동일                              |
+| clear         | `l.clear()`       | $O(1)$         | `l = []`와 유사                                 |
+| slice         | `l[a:b]`          | $O(b-a)$       | 슬라이싱하는 요소의 개수에 비례                 |
+| extend        | `l.extend(...)`   | $O(len(...))$  | 추가할 리스트의 크기에 비례                     |
+| construction  | `list(...)`       | $O(len(...))$  | 변환할 Iteratble의 길이에 비례                  |
+| check ==, !=  | `l1 == l2`        | $O(N)$         |                                                 |
+| insert        | `l[a:b] = ...`    | $O(N)$         |                                                 |
+| delete        | `del l[i]`        | $O(N)$         | 지우려는 요소의 위치에 따름. 최악의 경우 $O(N)$ |
+| containment   | `x in/not in l`   | $O(N)$         | 리스트 탐색                                     |
+| copy          | `l.copy()`        | $O(N)$         | `l[:]`과 동일                                   |
+| remove        | `l.remove(..)`    | $O(N)$         | 리스트/튜플은 $O(N)$                            |
+| pop           | `l.pop(i)`        | $O(N)$         | `l.pop(0)` 복잡도: $O(N)$                       |
+| extreme value | `min(l) / max(l)` | $O(N)$         | 리스트 탐색                                     |
+| reverse       | `l.reverse()`     | $O(N)$         | s가 t의 부분집합인지 체크                       |
+| iteration     | `for v in l:`     | $O(N)$         |                                                 |
+| sort          | `l.sort()`        | $O(N \\log N)$ |                                                 |
+| multiply      | `k*l`             | $O(N)$         | `len(l)*l` 복잡도: $O(N^2)$                     |
+
+## set
+
+| **연산**       | **예시**         | **복잡도**           | **비고**                                         |
+| -------------- | ---------------- | -------------------- | ------------------------------------------------ |
+| length         | `len(s)`         | $O(1)$               |                                                  |
+| add            | `s.add(5)`       | $O(1)$               |                                                  |
+| containment    | `x in/not in ss` | $O(1)$               | 리스트/튜플은 $O(N)$                             |
+| remove         | `s.remove(..)`   | $O(1)$               | 리스트/튜플은 $O(N)$                             |
+| discard        | `s.discard(..)`  | $O(1)$               |                                                  |
+| pop            | `s.pop()`        | $O(1)$               | `s = set()`과 동일                               |
+| clear          | `s.clear()`      | $O(1)$               | 변환할 Iteratble의 길이에 비례                   |
+| construction   | `set(...)`       | $O(len(...))$        | 모든 요소가 동일해야 함. 길이가 다른 경우 $O(1)$ |
+| check ==, !=   | `s != t`         | $O(len(s))$          |                                                  |
+| \<=, \<        | `s <= t`         | $O(len(s))$          | s가 t의 부분집합인지 체크                        |
+| \>=, \>        | `s >= t`         | $O(len(t))$          | t가 s의 부분집합인지 체크                        |
+| union          | `s + t`          | $O(len(s) + len(t))$ |                                                  |
+| intersection   | `s & t`          | $O(len(s) + len(t))$ |                                                  |
+| difference     | `s - t`          | $O(len(s) + len(t))$ |                                                  |
+| symmetric diff | `s ^ t`          | $O(len(s) + len(t))$ |                                                  |
+| iteration      | `for v in s:`    | $O(N)$               |                                                  |
+| copy           | `s.copy()`       | $O(N)$               |                                                  |
+
+## dict
+
+| **연산**       | **예시**      | **복잡도**    | **비고**                          |
+| -------------- | ------------- | ------------- | --------------------------------- |
+| index          | `d[k]`        | $O(1)$        |                                   |
+| store          | `d[k] = v`    | $O(1)$        |                                   |
+| length         | `len(d)`      | $O(1)$        |                                   |
+| delete         | `del d[k]`    | $O(1)$        |                                   |
+| get/setdefault | `d.get(k)`    | $O(1)$        |                                   |
+| pop            | `d.pop(k)`    | $O(1)$        |                                   |
+| pop item       | `d.popitem()` | $O(1)$        | 무작위로 요소를 pop               |
+| clear          | `d.clear()`   | $O(1)$        | `s = {}` 또는 `s = dict()`와 유사 |
+| view           | `d.keys()`    | $O(1)$        | `d.values()`와 동일               |
+| construction   | `dict(...)`   | $O(len(...))$ |                                   |
+| interation     | `for k in d:` | $O(N)$        |                                   |
+
+## 참고 자료
+
+- [Complexity of Python Operations - ICS-33: Intermediate Programming](https://www.ics.uci.edu/~pattis/ICS-33/lectures/complexitypython.txt)
+- [TimeComplexity - python wiki](https://wiki.python.org/moin/TimeComplexity)

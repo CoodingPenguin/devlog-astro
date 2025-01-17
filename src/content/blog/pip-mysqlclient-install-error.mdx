@@ -1,0 +1,55 @@
+---
+title: "pip로 mysqlclient 설치 시 에러 처리"
+description: "매우 화났던 mysqlclient 설치 에러 해결 방법"
+pubDate: "2022-09-12"
+published: true
+updatedDate: "2022-09-12"
+heroImage: "/src/assets/img/pip-mysqlclient-install-error/thumbnail.png"
+tags: ["python", "mysql"]
+hideHero: false
+useHeroAsOGImage: true
+noTextInOGImage: true
+---
+
+파이썬 서버 구현 시 MySQL을 사용한다면 어쩔 수 없이 깔게 되는 라이브러리가 있다. 바로 [mysqlclient](https://pypi.org/project/mysqlclient/)이다. 이 라이브러리는 우리 조직에서 악명이 높은데, 그 이유는 **로컬 개발 환경 세팅할 때마다 에러를 뿜어대기 때문**이다. 이를 해결하기 위해 수많은 시간을 쏟았기에 똑같은 어려움을 겪고 있는 사람을 위해 글을 남겨본다.
+
+## 설치 에러가 발생한 경우
+
+### 해결 방법
+
+```bash
+# Intel 칩인 경우
+brew install mysql
+
+# Apple Silicon 칩인 경우
+arch -x86_64 /usr/local/bin/brew install mysql
+```
+
+> **💡 arch -x86-64는 무엇인가요?**
+>
+> `arch` 명령어는 특정 아키텍처로 앱을 실행할 수 있게 해주는데, `arch -x86-64`로 해주어야 Intel 기반 앱을 설치할 수 있다. 2022년 당시 mysqlclient는 Apple Silicon 칩에 대한 지원이 없었어서 위와 같이 깔아주어야 이슈 없이 설치된다. 자세한 내용은 [여기](https://subicura.com/mac/dev/apple-silicon.html#apple-silicon-m1)를 참고할 것.
+
+## wheel 빌드 에러가 발생한 경우
+
+```bash
+ld: library not found for -lzstd
+clang-12: error: linker command failed with exit code 1 (use -v to see invocation)
+error: command 'clang' failed with exit status 1
+```
+
+### 해결 방법
+
+```bash
+# brew가 설치된 경로 확인
+brew --prefix   # output: Users/helloWorld/homebrew
+
+# ssl과 zstd 라이브러리를 찾도록 플래그 설정
+export LDFLAGS="-L/Users/helloWorld/homebrew/lib -L/Users/helloWorld/homebrew/opt/openssl/lib"
+export CPPFLAGS="-I/Users/helloWorld/homebrew/include -I/Users/helloWorld/homebrew/opt/openssl/include"
+```
+
+## 참고 자료
+
+- [[Django, 웹개발] pip install mysqlclient 오류 | SlowMotion](https://slow-motionn.tistory.com/12)
+- [error when install mysqlclient using pip to MacOS Bigsur | stackoverflow](https://stackoverflow.com/questions/67767255/error-when-install-mysqlclient-using-pip-to-macos-bigsur)
+- [패키지 관리자 (Apple Silicon/M1) | macOS 안내서](https://subicura.com/mac/dev/apple-silicon.html#apple-silicon-m1)
