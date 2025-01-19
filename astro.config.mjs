@@ -23,6 +23,7 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
+import rehypeFigure from "rehype-figure";
 
 // https://astro.build/config
 export default defineConfig({
@@ -75,7 +76,12 @@ export default defineConfig({
       wrap: true,
     },
     remarkPlugins: [remarkMath],
-    rehypePlugins: [rehypeKatex, rehypeAutolinkHeadings, rehypeSlug],
+    rehypePlugins: [
+      rehypeKatex,
+      rehypeAutolinkHeadings,
+      rehypeSlug,
+      rehypeFigure,
+    ],
   },
 
   prefetch: {
